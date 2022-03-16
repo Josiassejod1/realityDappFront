@@ -1,41 +1,24 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { MoralisProvider } from 'react-moralis';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import Home from './Home';
+
+const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+  },
+});
+
+const appId = "dFjUQiVswnhAiO4NdpyFWsRqL850DlhTNc4POy9b"
+const serverUrl = "https://qoh9qcizymqr.usemoralis.com:2053/server"
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <MoralisProvider appId={appId} serverUrl={serverUrl}>
+      <ChakraProvider theme={theme}>
+        <Home />
+      </ChakraProvider>
+    </MoralisProvider>
   );
 }
 

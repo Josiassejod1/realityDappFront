@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
-  const { authenticate, isAuthenticated, logout } = useMoralis();
+  const { isAuthenticated, logout } = useMoralis();
 
   return (
     <Router>

@@ -11,6 +11,7 @@ import {
   AlertDescription,
   Alert,
   AlertIcon,
+  Button
 } from '@chakra-ui/react';
 
 import { useMoralis } from "react-moralis";
@@ -19,7 +20,9 @@ function Home() {
   const {authenticate, isAuthenticated, logout, authError} = useMoralis()
 
   if(isAuthenticated) {
-
+    return(
+      <Heading>Test</Heading>
+    )
   }
   
 
@@ -30,7 +33,7 @@ function Home() {
         <Box>
           {
             authError && (
-              <Alert>
+              <Alert status="error">
                 <AlertIcon />
                 <Box flex="1">
                   <AlertTitle>Authentication has failed</AlertTitle>
@@ -43,7 +46,7 @@ function Home() {
           }
         </Box>
         <Heading>Welcome</Heading>
-        <Button onClick={() => authenticate()}isLoading>Connect</Button>
+        <Button onClick={() => authenticate()} isLoading={isAuthenticated}>Connect</Button>
       </Container>
     </>
   );

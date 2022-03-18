@@ -6,14 +6,15 @@ import {
   Button,
   BreadcrumbItem,
   BreadcrumbLink,
-  Grid
+  Grid,
 } from '@chakra-ui/react';
+import { useMoralis } from 'react-moralis';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
-  const {authenticate, isAuthenticated, logout} = useMoralis()
-  
+  const { authenticate, isAuthenticated, logout } = useMoralis();
+
   return (
     <Router>
       <Box
@@ -24,13 +25,17 @@ function App() {
         }}
       >
         <Grid p={3}>
-          <Breadcrumb separator="|">
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          {isAuthenticated && <Button onClick={() => logout()}>Logout</Button>}
+          {isAuthenticated && (
+            <div>
+              <Breadcrumb separator="|">
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+              </Breadcrumb>
+              <ColorModeSwitcher justifySelf="flex-end" />
+              <Button onClick={() => logout()}>Logout</Button>
+            </div>
+          )}
         </Grid>
         <Routes>
           <Route path="/" element={<Home />} />

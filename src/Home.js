@@ -6,31 +6,46 @@ import {
   Heading
 } from '@chakra-ui/layout';
 
+import {
+  AlertTitle,
+  AlertDescription,
+  Alert,
+  AlertIcon,
+} from '@chakra-ui/react';
+
 import { useMoralis } from "react-moralis";
 
 function Home() {
-  const {authenticate, isAuthenticated, logout} = useMoralis()
+  const {authenticate, isAuthenticated, logout, authError} = useMoralis()
 
   if(isAuthenticated) {
-    return(
-      <>
-        <Container>
-          <Heading>Welcome</Heading>
-        </Container>
-      </>
-    );
+
   }
   
 
 
-  return (
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
-          <Heading>Login</Heading>
-        </VStack>
-      </Grid>
-    </Box>
+  return(
+    <>
+      <Container>
+        <Box>
+          {
+            authError && (
+              <Alert>
+                <AlertIcon />
+                <Box flex="1">
+                  <AlertTitle>Authentication has failed</AlertTitle>
+                  <AlertDescription display="block">
+                    {authError.message}
+                  </AlertDescription>
+                </Box>
+              </Alert>
+            )
+          }
+        </Box>
+        <Heading>Welcome</Heading>
+        <Button onClick={() => authenticate()}isLoading>Connect</Button>
+      </Container>
+    </>
   );
 }
 

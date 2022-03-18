@@ -3,6 +3,7 @@ import Home from './Home';
 import {
   Box,
   Breadcrumb,
+  Button,
   BreadcrumbItem,
   BreadcrumbLink,
   Grid
@@ -11,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
+  const {authenticate, isAuthenticated, logout} = useMoralis()
+  
   return (
     <Router>
       <Box
@@ -27,6 +30,7 @@ function App() {
             </BreadcrumbItem>
           </Breadcrumb>
           <ColorModeSwitcher justifySelf="flex-end" />
+          {isAuthenticated && <Button onClick={() => logout()}>Logout</Button>}
         </Grid>
         <Routes>
           <Route path="/" element={<Home />} />

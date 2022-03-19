@@ -33,7 +33,7 @@ function App() {
             padding: '10px',
           }}
         >
-          <Grid p={3}>
+          <Grid p={4}>
             <div>
               <Breadcrumb separator="|">
                 <BreadcrumbItem>

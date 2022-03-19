@@ -1,24 +1,47 @@
 import React from 'react';
-import { MoralisProvider } from 'react-moralis';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import Home from './Home';
-
-const theme = extendTheme({
-  config: {
-    initialColorMode: 'dark',
-  },
-});
-
-const appId = "dFjUQiVswnhAiO4NdpyFWsRqL850DlhTNc4POy9b"
-const serverUrl = "https://qoh9qcizymqr.usemoralis.com:2053/server"
+import {
+  Box,
+  Breadcrumb,
+  Button,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Grid,
+} from '@chakra-ui/react';
+import { useMoralis } from 'react-moralis';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
+  const { isAuthenticated, logout } = useMoralis();
+
   return (
-    <MoralisProvider appId={appId} serverUrl={serverUrl}>
-      <ChakraProvider theme={theme}>
-        <Home />
-      </ChakraProvider>
-    </MoralisProvider>
+    <Router>
+      <Box
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '10px',
+        }}
+      >
+        <Grid p={3}>
+          {isAuthenticated && (
+            <div>
+              <Breadcrumb separator="|">
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+              </Breadcrumb>
+              <ColorModeSwitcher justifySelf="flex-end" />
+              <Button onClick={() => logout()}>Logout</Button>
+            </div>
+          )}
+        </Grid>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Box>
+    </Router>
   );
 }
 

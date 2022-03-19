@@ -1,14 +1,31 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, ChakraProvider, extendTheme  } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
+import { MoralisProvider } from 'react-moralis';
+
+
+const appId = "dFjUQiVswnhAiO4NdpyFWsRqL850DlhTNc4POy9b"
+const serverUrl = "https://qoh9qcizymqr.usemoralis.com:2053/server"
+
+const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+  },
+});
+
+
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <MoralisProvider appId={appId} serverUrl={serverUrl}>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </MoralisProvider>
   </StrictMode>,
   document.getElementById('root')
 );

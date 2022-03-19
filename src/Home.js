@@ -1,21 +1,22 @@
 import { Container, Heading } from '@chakra-ui/layout';
 
-import Auth from './Auth';
-
 import { useMoralis } from 'react-moralis';
 
 function Home() {
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated, user } = useMoralis();
 
   if (isAuthenticated) {
-    return <Heading>Test</Heading>;
+    return (
+      <Container>
+        <Heading>Welcome to Reality Dapp {user.attributes.username}</Heading>
+      </Container>
+    )
   }
 
   return (
     <>
       <Container>
         <Heading>Reality Dapp</Heading>
-        <Auth />
       </Container>
     </>
   );

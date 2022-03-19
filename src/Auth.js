@@ -91,6 +91,6 @@ const Auth = () => {
       <Login />
     </Stack>
   );
-};
+}
 
 export default Auth;

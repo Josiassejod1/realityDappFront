@@ -14,7 +14,7 @@ import {
 import { useMoralis } from 'react-moralis';
 
 const SignUp = () => {
-  const { signup } = useMoralis();
+  const { signup, authError } = useMoralis();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,13 +32,18 @@ const SignUp = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <Button onClick={() => signup(email, password, email)}>Sign Up</Button>
+      <Button onClick={() => {
+          signup(email, password, email)
+          if (!authError) {
+              navigator("/")
+          }
+      }}>Sign Up</Button>
     </Stack>
   );
 };
 
 const Login = () => {
-  const { login } = useMoralis();
+  const { login, authError } = useMoralis();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -56,7 +61,12 @@ const Login = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <Button onClick={() => login(email, password)}>Login</Button>
+      <Button onClick={() => {
+          login(email, password)
+          if (!authError) {
+              navigator("/")
+          }
+      }}>Login</Button>
     </Stack>
   );
 };

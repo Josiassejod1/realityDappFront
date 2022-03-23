@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './Home';
 import Auth from './Auth';
+import Seller from "./Seller"
+import NotFound from './NotFound';
 import {
   Box,
   Breadcrumb,
@@ -46,7 +48,9 @@ function App() {
             </div>
           </Grid>
           <Routes>
+            <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home />} />
+            <Route path="/seller" element={<Seller />} />
           </Routes>
         </Box>
       ) : (

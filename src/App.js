@@ -16,6 +16,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate
 } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 

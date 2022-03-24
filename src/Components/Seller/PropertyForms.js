@@ -27,10 +27,10 @@ export function PropertyForm() {
     city: '',
     state: '',
     zipCode: '',
-    baths: null,
-    beds: null,
-    squareFeet: null,
-    price: null,
+    baths: undefined,
+    beds: undefined,
+    squareFeet: undefined,
+    price: undefined,
     description: '',
     images: [],
     documents: [],
@@ -211,7 +211,7 @@ function AddressForm({ handleChange, values, nextStep }) {
             onChange={handleChange('state')}
           >
             {STATES.map(state => {
-              return <option>{state}</option>;
+              return <option key={state}>{state}</option>;
             })}
           </Select>
         </FormControl>

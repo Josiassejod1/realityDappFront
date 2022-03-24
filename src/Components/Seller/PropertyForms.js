@@ -3,16 +3,17 @@ import {
   Button,
   Center,
   Container,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  Flex,
-  Wrap,
   Grid,
   Input,
-  Spacer,
   Select,
+  Spacer,
+  Textarea,
+  Wrap,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
@@ -26,10 +27,10 @@ export function PropertyForm() {
     city: '',
     state: '',
     zipCode: '',
-    baths: 0,
-    beds: 0,
-    squareFeet: 0,
-    price: 0,
+    baths: null,
+    beds: null,
+    squareFeet: null,
+    price: null,
     description: '',
     images: [],
     documents: [],
@@ -135,6 +136,25 @@ function PropertyDetailForm({ handleChange, values, nextStep, prevStep }) {
             placeholder="Sqft"
             value={values.squareFeet}
             onChange={handleChange('squareFeet')}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="price">Price</FormLabel>
+          <Input
+            type="number"
+            id="price"
+            placeholder="Price"
+            value={values.price}
+            onChange={handleChange('price')}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="description">Description</FormLabel>
+          <Textarea
+            id="description"
+            placeholder="Description"
+            value={values.description}
+            onChange={handleChange('description')}
           />
         </FormControl>
         <Flex p={2}>

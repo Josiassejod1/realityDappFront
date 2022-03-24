@@ -1,13 +1,18 @@
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Grid,
-  FormHelperText,
+  Box,
   Button,
-  Input,
-  Select,
+  Center,
   Container,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  Flex,
+  Wrap,
+  Grid,
+  Input,
+  Spacer,
+  Select,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
@@ -21,10 +26,10 @@ export function PropertyForm() {
     city: '',
     state: '',
     zipCode: '',
-    bath: '',
-    bed: '',
-    squareFeet: '',
-    price: 0.0,
+    baths: 0,
+    beds: 0,
+    squareFeet: 0,
+    price: 0,
     description: '',
     images: [],
     documents: [],
@@ -55,10 +60,10 @@ export function PropertyForm() {
           values={properties}
         />
       );
-    // case 3:
-    //   return (
-    //     <Confirmation />
-    //   )
+    case 3:
+      return (
+        <h1>Hi</h1>
+      )
     // case 4:
     //   return (
     //     <Success />
@@ -69,11 +74,12 @@ export function PropertyForm() {
   }
 
   function prevStep() {
+    console.log(properties);
     setStep(step - 1);
   }
 
   function nextStep() {
-    alert(properties);
+    console.log(properties);
     setStep(step + 1);
   }
 
@@ -88,28 +94,59 @@ export function PropertyForm() {
 function PropertyDetailForm({ handleChange, values, nextStep, prevStep }) {
   const Continue = e => {
     e.preventDefault();
+    console.log(values);
     nextStep();
   };
 
   const Previous = e => {
+    console.log(values);
     e.preventDefault();
     prevStep();
   };
 
   return (
     <Container>
-      <Grid>
-        <Button onClick={Continue}>Continue</Button>
-        <Button onClick={Previous}>Previous</Button>
-      </Grid>
+      <Wrap spacing="12px">
+        <FormControl isRequired>
+          <FormLabel htmlFor="beds">Beds</FormLabel>
+          <Input
+            type="number"
+            id="beds"
+            placeholder="Beds"
+            value={values.beds}
+            onChange={handleChange('beds')}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="baths">Baths</FormLabel>
+          <Input
+            type="number"
+            id="baths"
+            placeholder="Baths"
+            value={values.baths}
+            onChange={handleChange('baths')}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="sqft">Square Feet</FormLabel>
+          <Input
+            type="number"
+            id="sqft"
+            placeholder="Sqft"
+            value={values.squareFeet}
+            onChange={handleChange('squareFeet')}
+          />
+        </FormControl>
+        <Flex p={2}>
+          <Button onClick={Previous}>Previous</Button>
+          <Button onClick={Continue}>Continue</Button>
+        </Flex>
+      </Wrap>
     </Container>
   );
 }
 
 function AddressForm({ handleChange, values, nextStep }) {
-  console.log(nextStep);
-  console.log(handleChange);
-  console.log(values);
   const Continue = e => {
     e.preventDefault();
     nextStep();
@@ -117,56 +154,58 @@ function AddressForm({ handleChange, values, nextStep }) {
 
   return (
     <Container>
-      <FormControl isRequired>
-        <FormLabel htmlFor="address1">Address 1</FormLabel>
-        <Input
-          id="address1"
-          placeholder="Address"
-          value={values.address1}
-          onChange={handleChange('address1')}
-        />
-      </FormControl>
-      <FormControl>
-        <FormLabel htmlFor="address2">Address 2</FormLabel>
-        <Input
-          id="address2"
-          placeholder="Address"
-          value={values.address2}
-          onChange={handleChange('address2')}
-        />
-      </FormControl>
-      <FormControl isRequired>
-        <FormLabel htmlFor="city">City</FormLabel>
-        <Input
-          id="city"
-          placeholder="City"
-          value={values.city}
-          onChange={handleChange('city')}
-        />
-      </FormControl>
-      <FormControl>
-        <FormLabel htmlFor="state">State</FormLabel>
-        <Select
-          id="state"
-          placeholder="State"
-          value={values.state}
-          onChange={handleChange('state')}
-        >
-          {STATES.map(state => {
-            return <option>{state}</option>;
-          })}
-        </Select>
-      </FormControl>
-      <FormControl isRequired>
-        <FormLabel htmlFor="zip-code">City</FormLabel>
-        <Input
-          id="zip-code"
-          placeholder="Zip Code"
-          value={values.zipCode}
-          onChange={handleChange('zipCode')}
-        />
-      </FormControl>
-      <Button onClick={Continue}>Next</Button>
+      <Wrap spacing="30px" align="center">
+        <FormControl isRequired>
+          <FormLabel htmlFor="address1">Address 1</FormLabel>
+          <Input
+            id="address1"
+            placeholder="Address"
+            value={values.address1}
+            onChange={handleChange('address1')}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="address2">Address 2</FormLabel>
+          <Input
+            id="address2"
+            placeholder="Address"
+            value={values.address2}
+            onChange={handleChange('address2')}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="city">City</FormLabel>
+          <Input
+            id="city"
+            placeholder="City"
+            value={values.city}
+            onChange={handleChange('city')}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="state">State</FormLabel>
+          <Select
+            id="state"
+            placeholder="State"
+            value={values.state}
+            onChange={handleChange('state')}
+          >
+            {STATES.map(state => {
+              return <option>{state}</option>;
+            })}
+          </Select>
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel htmlFor="zip-code">City</FormLabel>
+          <Input
+            id="zip-code"
+            placeholder="Zip Code"
+            value={values.zipCode}
+            onChange={handleChange('zipCode')}
+          />
+        </FormControl>
+        <Button onClick={Continue}>Next</Button>
+      </Wrap>
     </Container>
   );
 }

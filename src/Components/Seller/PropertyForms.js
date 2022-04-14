@@ -22,6 +22,7 @@ import { InputControl } from 'formik-chakra-ui';
 import AddressForm from './AddressForm';
 import PropertyDetailForm from './PropertyDetailForm';
 import UploadImage from './UploadImage';
+import Confirmation from './Confirmation';
 
 export function PropertyForm() {
   const [step, setStep] = useState(1);
@@ -36,7 +37,7 @@ export function PropertyForm() {
     squareFeet: undefined,
     price: undefined,
     description: '',
-    images: '',
+    images: null,
     documents:'',
   });
 
@@ -70,14 +71,17 @@ export function PropertyForm() {
         <UploadImage
           prevStep={prevStep}
           nextStep={nextStep}
-          handleChange={handleChange}
+          setProperties={setProperties}
           values={properties}
         />
       );
-    // case 4:
-    //   return (
-    //     <Success />
-    //   )
+     case 4:
+       return (
+        <Confirmation 
+        prevStep={ prevStep }
+        nextStep={ nextStep }
+        values={ properties }
+      />)
     // never forget the default case, otherwise VS code would be mad!
     default:
     // do nothing

@@ -16,8 +16,12 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { Formik } from 'formik';
 
-import { STATES } from '../../const';
+import { InputControl } from 'formik-chakra-ui';
+import AddressForm from './AddressForm';
+import PropertyDetailForm from './PropertyDetailForm';
+import UploadImage from './UploadImage';
 
 export function PropertyForm() {
   const [step, setStep] = useState(1);
@@ -32,8 +36,8 @@ export function PropertyForm() {
     squareFeet: undefined,
     price: undefined,
     description: '',
-    images: [],
-    documents: [],
+    images: '',
+    documents:'',
   });
 
   const handleChange = input => e => {
@@ -63,8 +67,13 @@ export function PropertyForm() {
       );
     case 3:
       return (
-        <h1>Hi</h1>
-      )
+        <UploadImage
+          prevStep={prevStep}
+          nextStep={nextStep}
+          handleChange={handleChange}
+          values={properties}
+        />
+      );
     // case 4:
     //   return (
     //     <Success />
@@ -92,140 +101,3 @@ export function PropertyForm() {
   };
 }
 
-function PropertyDetailForm({ handleChange, values, nextStep, prevStep }) {
-  const Continue = e => {
-    e.preventDefault();
-    console.log(values);
-    nextStep();
-  };
-
-  const Previous = e => {
-    console.log(values);
-    e.preventDefault();
-    prevStep();
-  };
-
-  return (
-    <Container>
-      <Wrap spacing="12px">
-        <FormControl isRequired>
-          <FormLabel htmlFor="beds">Beds</FormLabel>
-          <Input
-            type="number"
-            id="beds"
-            placeholder="Beds"
-            value={values.beds}
-            onChange={handleChange('beds')}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="baths">Baths</FormLabel>
-          <Input
-            type="number"
-            id="baths"
-            placeholder="Baths"
-            value={values.baths}
-            onChange={handleChange('baths')}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="sqft">Square Feet</FormLabel>
-          <Input
-            type="number"
-            id="sqft"
-            placeholder="Sqft"
-            value={values.squareFeet}
-            onChange={handleChange('squareFeet')}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="price">Price</FormLabel>
-          <Input
-            type="number"
-            id="price"
-            placeholder="Price"
-            value={values.price}
-            onChange={handleChange('price')}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <Textarea
-            id="description"
-            placeholder="Description"
-            value={values.description}
-            onChange={handleChange('description')}
-          />
-        </FormControl>
-        <Flex p={2}>
-          <Button onClick={Previous}>Previous</Button>
-          <Button onClick={Continue}>Continue</Button>
-        </Flex>
-      </Wrap>
-    </Container>
-  );
-}
-
-function AddressForm({ handleChange, values, nextStep }) {
-  const Continue = e => {
-    e.preventDefault();
-    nextStep();
-  };
-
-  return (
-    <Container>
-      <Wrap spacing="30px" align="center">
-        <FormControl isRequired>
-          <FormLabel htmlFor="address1">Address 1</FormLabel>
-          <Input
-            id="address1"
-            placeholder="Address"
-            value={values.address1}
-            onChange={handleChange('address1')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="address2">Address 2</FormLabel>
-          <Input
-            id="address2"
-            placeholder="Address"
-            value={values.address2}
-            onChange={handleChange('address2')}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="city">City</FormLabel>
-          <Input
-            id="city"
-            placeholder="City"
-            value={values.city}
-            onChange={handleChange('city')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="state">State</FormLabel>
-          <Select
-            id="state"
-            placeholder="State"
-            value={values.state}
-            onChange={handleChange('state')}
-          >
-            {STATES.map(state => {
-              return <option key={state}>{state}</option>;
-            })}
-          </Select>
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="zip-code">City</FormLabel>
-          <Input
-            id="zip-code"
-            placeholder="Zip Code"
-            value={values.zipCode}
-            onChange={handleChange('zipCode')}
-          />
-        </FormControl>
-        <Button onClick={Continue}>Next</Button>
-      </Wrap>
-    </Container>
-  );
-}

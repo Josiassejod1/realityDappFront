@@ -35,7 +35,7 @@ function UploadImage({ setProperties, values, nextStep, prevStep }) {
       return (
         <div>
           <Center>
-            <Image src={window.URL.createObjectURL(selectedDeed)} />
+          <iframe src={selectedDeed} />
           </Center>
         </div>
       );
@@ -48,33 +48,36 @@ function UploadImage({ setProperties, values, nextStep, prevStep }) {
       <input
         required
         type="file"
+        accept="image/*"
         onChange={e => {
           setProperties(prevProperty => ({
             ...prevProperty,
-            images: e.target.files[0],
+            images: window.URL.createObjectURL(e.target.files[0]),
           }));
           setSelectedFile(e.target.files[0]);
         }}
       />
-      <Flex p={2}>
-        <Button onClick={Previous}>Previous</Button>
-        <Button onClick={Continue}>Continue</Button>
-      </Flex>
       {fileData()}
         <br/>
       <FormLabel htmlFor="deed">Upload Property Deed</FormLabel>
       <input
         required
         type="file"
+        accept="application/pdf"
         onChange={e => {
           setProperties(prevProperty => ({
             ...prevProperty,
-            document: e.target.files[0],
+            documents: window.URL.createObjectURL(e.target.files[0]),
           }));
           setSelectedDeed(e.target.files[0]);
         }}
       />
       {fileDeed()}
+
+      <Flex p={2}>
+        <Button onClick={Previous}>Previous</Button>
+        <Button onClick={Continue}>Continue</Button>
+      </Flex>
     </>
   );
 }

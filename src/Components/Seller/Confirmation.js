@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Container,
@@ -7,9 +7,15 @@ import {
   Text,
   Image,
   ListItem,
+  Stack,
+  Alert,
+  AlertIcon,
+  FormLabel,
 } from '@chakra-ui/react';
 
 function Confirmation({ prevStep, nextStep, values }) {
+  const [errors, setErrors] = useState(null);
+  const [confirmationList, setConfirmationList] = useState([]);
   console.log(values);
   const {
     address1,
@@ -35,60 +41,69 @@ function Confirmation({ prevStep, nextStep, values }) {
     prevStep();
   };
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <div>
-        <List>
+  useEffect(() => {
+    setConfirmationList(createConfirmationList);
+  }, []);
+
+  function createConfirmationList() {
+      const tempList = []
+    Object.keys(values).map((key, index) => {
+      if (key == 'images' && values[key]) {
+          tempList.push(
+            <ListItem>
+              <FormLabel htmlFor={key}>{key}</FormLabel>
+              <Image
+                src={values[key]}
+                height="250"
+                width="250"
+              />
+            </ListItem>
+          );
+      } 
+
+      if (key == 'documents' && values[key]) {
+        tempList.push(
           <ListItem>
-            <FormLabel htmlFor="address1">Address 1</FormLabel>
-            <Text>{address1}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="address2">Address 2</FormLabel>
-            <Text>{address2}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="city">City</FormLabel>
-            <Text>{city}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="state">State</FormLabel>
-            <Text>{state}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="zipCode">Zip Code</FormLabel>
-            <Text>{zipCode}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="baths">Baths</FormLabel>
-            <Text>{baths}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="beds">Beds</FormLabel>
-            <Text>{beds}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="sqrft">Square Feet</FormLabel>
-            <Text>{squareFeet}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="price">Price</FormLabel>
-            <Text>{price}</Text>
-          </ListItem>
-          <ListItem>
-            <FormLabel htmlFor="price">Description</FormLabel>
-            <Text>{description}</Text>
-          </ListItem>
-          <ListItem>
-            <Image
-              src={window.URL.createObjectURL(images)}
+            <FormLabel htmlFor={key}>{key}</FormLabel>
+            <iframe
+              src={values[key]}
               height="250"
               width="250"
             />
           </ListItem>
+        );
+    }
+      
+      else {
+        tempList.push(
           <ListItem>
-            <Image src={documents} height="250" width="250" />
+            <FormLabel htmlFor="key">{key}</FormLabel>
+            <Text>{values[key]}</Text>
           </ListItem>
+        );
+      }
+
+      if (!values[key] && key != 'address2') {
+        tempList.push(
+          <Stack>
+            <Alert status="error">
+              <AlertIcon />
+              Value missing {key}
+            </Alert>
+          </Stack>
+        );
+      }
+    });
+    return tempList;
+  }
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <div>
+        <List>
+            {
+                confirmationList.map((item) => item)
+            }
         </List>
 
         <br />

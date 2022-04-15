@@ -37,8 +37,8 @@ export function PropertyForm() {
     squareFeet: undefined,
     price: undefined,
     description: '',
-    images: null,
-    documents:'',
+    images: undefined,
+    documents: undefined,
   });
 
   const handleChange = input => e => {

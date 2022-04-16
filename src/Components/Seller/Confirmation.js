@@ -15,8 +15,9 @@ import {
 import { useNewMoralisObject, useMoralis } from 'react-moralis';
 
 function Confirmation({ prevStep, nextStep, values }) {
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState('');
   const [confirmationList, setConfirmationList] = useState([]);
+  const [success, setSuccess] = useState(false);
   console.log(values);
   const { user } = useMoralis();
   const postObject = useNewMoralisObject('Property');
@@ -45,6 +46,7 @@ function Confirmation({ prevStep, nextStep, values }) {
       onSuccess: property => {
         // Execute any logic that should take place after the object is saved.
         console.log('New object created with objectId: ' + property.id);
+        setSuccess(true);
         const relation = user.relation('properties');
         relation.add(property);
         user.save();
@@ -52,6 +54,7 @@ function Confirmation({ prevStep, nextStep, values }) {
       onError: error => {
         // Execute any logic that should take place if the save fails.
         // error is a Moralis.Error with an error code and message.
+        setErrors(error.message)
         console.error(
           'Failed to create new object, with error code: ' + error.message
         );
@@ -113,8 +116,19 @@ function Confirmation({ prevStep, nextStep, values }) {
   return (
     <Container component="main" maxWidth="xs">
       <div>
+        {success && (
+          <Alert status="success">
+            <AlertIcon />
+            Successfully Created Record
+          </Alert>
+        )}
+        {errors != '' && (
+          <Alert status="error">
+            <AlertIcon />
+            {errors}
+          </Alert>
+        )}
         <List>{confirmationList.map(item => item)}</List>
-
         <br />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>

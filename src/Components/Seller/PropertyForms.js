@@ -75,14 +75,20 @@ export function PropertyForm() {
           values={properties}
         />
       );
-     case 4:
-       return (
-        <Confirmation 
-        prevStep={ prevStep }
-        nextStep={ nextStep }
-        values={ properties }
-      />)
-    // never forget the default case, otherwise VS code would be mad!
+    case 4:
+      return (
+        <Confirmation
+          prevStep={prevStep}
+          nextStep={nextStep}
+          values={properties}
+        />
+      );
+    case 5:
+      return (
+        <div>
+          <h1>Awesome, you have uploaded your property</h1>
+        </div>
+      );
     default:
     // do nothing
   }
@@ -104,4 +110,3 @@ export function PropertyForm() {
     }));
   };
 }
-

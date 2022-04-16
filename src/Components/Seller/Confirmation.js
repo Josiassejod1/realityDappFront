@@ -12,11 +12,14 @@ import {
   AlertIcon,
   FormLabel,
 } from '@chakra-ui/react';
+import { useNewMoralisObject, useMoralis } from 'react-moralis';
 
 function Confirmation({ prevStep, nextStep, values }) {
   const [errors, setErrors] = useState(null);
   const [confirmationList, setConfirmationList] = useState([]);
   console.log(values);
+  const { user } = useMoralis();
+  const postObject = useNewMoralisObject('Property');
   const {
     address1,
     address2,
@@ -33,8 +36,28 @@ function Confirmation({ prevStep, nextStep, values }) {
   } = values;
   const Continue = e => {
     e.preventDefault();
+    createProperty();
     nextStep();
   };
+
+  function createProperty() {
+    postObject.save(values, {
+      onSuccess: property => {
+        // Execute any logic that should take place after the object is saved.
+        console.log('New object created with objectId: ' + property.id);
+        const relation = user.relation('properties');
+        relation.add(property);
+        user.save();
+      },
+      onError: error => {
+        // Execute any logic that should take place if the save fails.
+        // error is a Moralis.Error with an error code and message.
+        console.error(
+          'Failed to create new object, with error code: ' + error.message
+        );
+      },
+    });
+  }
 
   const Previous = e => {
     e.preventDefault();
@@ -46,35 +69,25 @@ function Confirmation({ prevStep, nextStep, values }) {
   }, []);
 
   function createConfirmationList() {
-      const tempList = []
+    const tempList = [];
     Object.keys(values).map((key, index) => {
       if (key == 'images' && values[key]) {
-          tempList.push(
-            <ListItem>
-              <FormLabel htmlFor={key}>{key}</FormLabel>
-              <Image
-                src={values[key]}
-                height="250"
-                width="250"
-              />
-            </ListItem>
-          );
-      } 
+        tempList.push(
+          <ListItem>
+            <FormLabel htmlFor={key}>{key}</FormLabel>
+            <Image src={values[key]} height="250" width="250" />
+          </ListItem>
+        );
+      }
 
       if (key == 'documents' && values[key]) {
         tempList.push(
           <ListItem>
             <FormLabel htmlFor={key}>{key}</FormLabel>
-            <iframe
-              src={values[key]}
-              height="250"
-              width="250"
-            />
+            <iframe src={values[key]} height="250" width="250" />
           </ListItem>
         );
-    }
-      
-      else {
+      } else {
         tempList.push(
           <ListItem>
             <FormLabel htmlFor="key">{key}</FormLabel>
@@ -100,11 +113,7 @@ function Confirmation({ prevStep, nextStep, values }) {
   return (
     <Container component="main" maxWidth="xs">
       <div>
-        <List>
-            {
-                confirmationList.map((item) => item)
-            }
-        </List>
+        <List>{confirmationList.map(item => item)}</List>
 
         <br />
         <Grid container spacing={2}>

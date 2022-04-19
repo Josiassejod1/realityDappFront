@@ -23,18 +23,6 @@ function Seller() {
     console.log(results[0]?.get('address1'));
   }
 
-  function PropertyList() {
-    <List>
-      {properties.map(property => {
-        <ListItem>
-          <p>
-            {property.get('address1')} | Bed {property.get('beds')} | Bath{' '}
-            {property.get('baths')} | Square Feet {property.get('squareFeet')}
-          </p>
-        </ListItem>;
-      })}
-    </List>;
-  }
 
   return (
     <>

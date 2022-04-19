@@ -19,7 +19,7 @@ export default function PropertyInfo(props) {
     }
     return(
         <div>
-            <pr>{properties}</pr>
+            <pre>{JSON.stringify(properties)}</pre>
         </div>
     )
     

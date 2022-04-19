@@ -22,6 +22,7 @@ import {
 } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import PropertyInfo from "./Components/PropertyInfo";
+import PropertyForms from './Components/Seller/PropertyForms';
 
 function App() {
   const { isAuthenticated, logout, isAuthUndefined } = useMoralis();
@@ -52,6 +53,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home />} />
             <Route path="seller" element={<Seller />}>
+              <Route path="property" element={<PropertyForms />} />
               <Route path=":sellerId" element={<PropertyInfo />}/>
             </Route>
           </Routes>

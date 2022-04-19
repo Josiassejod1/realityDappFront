@@ -24,7 +24,7 @@ import PropertyDetailForm from './PropertyDetailForm';
 import UploadImage from './UploadImage';
 import Confirmation from './Confirmation';
 
-export function PropertyForm() {
+export default function PropertyForm() {
   const [step, setStep] = useState(1);
   const [properties, setProperties] = useState({
     address1: '',

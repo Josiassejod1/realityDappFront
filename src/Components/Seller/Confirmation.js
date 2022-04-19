@@ -13,11 +13,16 @@ import {
   FormLabel,
 } from '@chakra-ui/react';
 import { useNewMoralisObject, useMoralis } from 'react-moralis';
+import {
+    useNavigate
+  } from 'react-router-dom';
+
 
 function Confirmation({ prevStep, nextStep, values }) {
   const [errors, setErrors] = useState('');
   const [confirmationList, setConfirmationList] = useState([]);
   const [success, setSuccess] = useState(false);
+  let navigate = useNavigate();
   console.log(values);
   const { user } = useMoralis();
   const postObject = useNewMoralisObject('Property');
@@ -38,6 +43,7 @@ function Confirmation({ prevStep, nextStep, values }) {
   const Continue = e => {
     e.preventDefault();
     createProperty();
+    navigate("/seller");
     nextStep();
   };
 

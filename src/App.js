@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './Home';
 import Auth from './Auth';
+import Seller from "./Seller"
+import NotFound from './NotFound';
 import {
   Box,
   Breadcrumb,
@@ -19,6 +21,8 @@ import {
   useNavigate
 } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
+import PropertyInfo from "./Components/PropertyInfo";
+import PropertyForms from './Components/Seller/PropertyForms';
 
 function App() {
   const { isAuthenticated, logout, isAuthUndefined } = useMoralis();
@@ -46,7 +50,12 @@ function App() {
             </div>
           </Grid>
           <Routes>
+            <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Home />} />
+            <Route path="seller" element={<Seller />}>
+              <Route path="property" element={<PropertyForms />} />
+              <Route path=":sellerId" element={<PropertyInfo />}/>
+            </Route>
           </Routes>
         </Box>
       ) : (

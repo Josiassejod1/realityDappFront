@@ -1,0 +1,15 @@
+info @storybook/react v6.4.22
+info 
+info => Cleaning outputDir: /var/folders/hk/brs4ryb96cz5jjggvmpxx7r40000gn/T/chromatic--38135-58vFOVPgmrCL
+(node:38156) DeprecationWarning: --static-dir CLI flag is deprecated, see:
+
+https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated---static-dir-cli-flag
+(Use `node --trace-deprecation ...` to show where the warning was created)
+info => Loading presets
+info => Copying static files: ./public => ./
+info => Compiling manager..
+info => Compiling preview..
+info => Loading Webpack configuration from `node_modules/react-scripts`
+info => Removing existing JavaScript and TypeScript rules.
+info => Modifying Create React App rules.
+info => Using default Webpack5 setup

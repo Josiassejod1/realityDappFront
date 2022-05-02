@@ -1,11 +1,8 @@
 .styled_button {
-    background-color: red;
+    background-color: #53329A;
     width: 129px;
     height: 63px;
     color: white;
     border-radius: 10px;
-}
-
-html, body {
     font-family: 'Poppins', sans-serif;
 }

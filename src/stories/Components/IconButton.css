@@ -1,0 +1,19 @@
+.icon_button {
+  background-color: rgba(255, 255, 255, 0.095);
+  box-shadow: inset 2.01px -2.01px 20px rgba(211, 198, 198, 0.17),
+    inset -3.01333px 3.01333px 3.01333px rgba(255, 255, 255, 0.39);
+  backdrop-filter: blur(74.4293px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 26px;
+  width: 150px;
+  height: 138px;
+  justify-content: center;
+  display: flex;
+}
+
+.icon_button_image {
+    width: 56px;
+    margin: 35px;
+    height: 56px;
+    position: relative
+}

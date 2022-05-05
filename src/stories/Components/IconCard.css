@@ -1,0 +1,22 @@
+.icon_card_title {
+    padding-top: 20px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.icon_card_description {
+    padding-top: 16px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.icon_card_container {
+    text-align: center;
+    width: 226px;
+    height: 282px;
+}
+
+.icon_button_container {
+    display: inline-flex;
+}

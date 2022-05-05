@@ -7,16 +7,18 @@
 
 .icon_card_description {
     padding-top: 16px;
+    text-align: center;
     color: white;
     font-family: 'Poppins', sans-serif;
+    width: 226px;
+    margin: 0 auto;
 }
 
 .icon_card_container {
     text-align: center;
-    width: 226px;
-    height: 282px;
 }
 
 .icon_button_container {
     display: inline-flex;
+
 }

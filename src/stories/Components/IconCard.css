@@ -9,12 +9,13 @@
     padding-top: 16px;
     color: white;
     font-family: 'Poppins', sans-serif;
+    width: 226px;
 }
 
 .icon_card_container {
     text-align: center;
-    width: 226px;
-    height: 282px;
+    /* width: 226px;
+    height: 282px; */
 }
 
 .icon_button_container {

@@ -34,7 +34,7 @@ export const IconList = () => {
     <div className="icon_list">
       {icons.map(icon => {
         return (
-          <div style={{paddingLeft: 35, paddingRight: 35, margin: 5}}>
+          <div style={{paddingLeft: 35, paddingRight: 35, margin: 5, paddingTop: 5}}>
             <IconCard src={icon.src} title={icon.title}>
               {icon.description}
             </IconCard>

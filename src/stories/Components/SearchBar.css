@@ -1,0 +1,10 @@
+.search_bar_text {
+    font-family: 'Poppins', sans-serif;
+}
+
+.search_input {
+    font-size: 18px;
+    color: #707070;
+    font-family: 'Poppins', sans-serif;
+    border: 0px;
+}

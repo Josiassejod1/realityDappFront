@@ -1,6 +1,9 @@
-.rental_image {
+.card_container {
     width: 298px;
-    height: 313px;
     border-radius: 10px;
-    mix-blend-mode: lighten;
+}
+
+.rental_text {
+    color: white;
+    font-family: 'Poppins', sans-serif;
 }

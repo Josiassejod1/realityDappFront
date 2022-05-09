@@ -30,7 +30,7 @@ export const RentalCard = ({
         />
         <Flex justifyContent="space-between">
         <Box>
-          <Text className="rental_text">{type}</Text>
+          <Text className="rental_header">{type}</Text>
         </Box>
         <Box>
           <Text className="rental_text">
@@ -38,7 +38,7 @@ export const RentalCard = ({
           </Text>
         </Box>
       </Flex>
-      <Box style={{ paddingTop: 16, paddingBottom: 16 }}>
+      <Box style={{ paddingBottom: 16 }}>
         <HorizontalDivider />
       </Box>
       <SimpleGrid column={2} alignItems="center">
@@ -49,7 +49,7 @@ export const RentalCard = ({
           <ViewButton />
         </Flex>
         <Box width="225px">
-          <Text className="rental_text">{address}</Text>
+          <Text className="rental_text" color="#C4C4C4">{address}</Text>
         </Box>
       </SimpleGrid>
       </Box>

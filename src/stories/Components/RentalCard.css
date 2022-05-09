@@ -5,5 +5,13 @@
 
 .rental_text {
     color: white;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+.rental_header {
+    color: white;
+    font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }

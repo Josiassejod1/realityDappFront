@@ -3,6 +3,7 @@ import { SearchBar } from '../../stories/Components/SearchBar';
 import './HomeScreen.css';
 import { RentalList } from '../../stories/Components/RentalList';
 import { IconList } from '../../stories/Components/IconList';
+//import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 function HomeScreen() {
   const data = [
@@ -84,9 +85,9 @@ function HomeScreen() {
   ];
   return (
     <Box className="container">
-        <Box id="abstract_figure_1"></Box>
-        <Box id="abstract_figure_2"></Box>
-        <Box id="abstract_figure_3"></Box>
+      <Box id="abstract_figure_1"></Box>
+      <Box id="abstract_figure_2"></Box>
+      <Box id="abstract_figure_3"></Box>
       <Flex>
         <Flex id="slogan_div">
           <Box>
@@ -99,39 +100,47 @@ function HomeScreen() {
             </Text>
             <SearchBar />
           </Box>
-
           <Image src="moving.png" />
         </Flex>
       </Flex>
+      <ListingSection title="Rentals Near You" data={data} />
       <Box>
-        <ListingSection title="Rentals Near You" data={data}/>
+        <Center>
+          <Text className="screen_text" id="category_header">
+            All in one platform
+          </Text>
+        </Center>
+        <Center>
+          <Text className="screen_text" id="icon_div_description">
+            Eu, molestie commodo, enim pellentesque turpis integer sagittis
+          </Text>
+        </Center>
+        <Center>
+          <IconList />
+        </Center>
       </Box>
-      <Box>
-          <Center>
-            <Text className="screen_text" id="category_header">All in one platform</Text>
-          </Center>
-          <Center>
-          <Text className='screen_text' id='icon_div_description'>Eu, molestie commodo, enim pellentesque turpis integer sagittis</Text>
-          </Center>
-          <Center>
-              <IconList/>
-          </Center>
-      </Box>
+      <ListingSection title="Newly Listed Rentals" data={data} />
     </Box>
   );
-
-  
 }
 
 function ListingSection(props) {
-    const data =  props.data;
-    const title =  props.title;
-    return(
-        <Box>
-        <Text className="screen_text" id="category_header">{title}</Text>
-        <RentalList data={data} />
-      </Box>
-    );
+  const data = props.data;
+  const title = props.title;
+  return (
+    <Box>
+      <Flex justifyContent="space-between">
+        <Text className="screen_text" id="category_header">
+          {title}
+        </Text>
+      </Flex>
+      <RentalList data={data} />
+    </Box>
+  );
 }
+// TODO: Add View All Button with Arrow
+// function ViewAllButton() {
+//   <ArrowForwardIcon w={24} h={18} />;
+// }
 
 export default HomeScreen;

@@ -3,6 +3,7 @@ import { SearchBar } from '../../stories/Components/SearchBar';
 import './HomeScreen.css';
 import { RentalList } from '../../stories/Components/RentalList';
 import { IconList } from '../../stories/Components/IconList';
+import { StyledButton } from '../../stories/Components/StyledButton';
 //import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 function HomeScreen() {
@@ -120,6 +121,21 @@ function HomeScreen() {
         </Center>
       </Box>
       <ListingSection title="Newly Listed Rentals" data={data} />
+      <Center>
+        <Text className="screen_text" id="category_header">
+          Want to list your property on REALITY DAPP
+        </Text>
+      </Center>
+      <Center>
+        <Text className="screen_text" id="icon_div_description">
+          Eu, molestie commodo, enim pellentesque turpis integer sagittis
+        </Text>
+      </Center>
+      <Box>
+        <Center>
+          <StyledButton label="Sign Up" />
+        </Center>
+      </Box>
     </Box>
   );
 }

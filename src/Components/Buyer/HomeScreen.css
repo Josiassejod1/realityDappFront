@@ -37,8 +37,8 @@
   position: absolute;
   width: 1292px;
   height: 53px;
-  left: 24%;
-  top: 60%;
+  left: 25%;
+  top: 80%;
 
   /* Linear Purple Blue Style */
 
@@ -58,6 +58,12 @@
 #description {
   font-family: 24px;
   font-weight: 400;
+}
+
+#icon_div_description {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 400;
 }
 
 #category_header {

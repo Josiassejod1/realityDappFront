@@ -2,6 +2,7 @@ import { Box, Text, Flex, Image, Center } from '@chakra-ui/react';
 import { SearchBar } from '../../stories/Components/SearchBar';
 import './HomeScreen.css';
 import { RentalList } from '../../stories/Components/RentalList';
+import { IconList } from '../../stories/Components/IconList';
 
 function HomeScreen() {
   const data = [
@@ -103,17 +104,34 @@ function HomeScreen() {
         </Flex>
       </Flex>
       <Box>
-        <Text className="screen_text" id="category_header">Rentals Near Me</Text>
-        <RentalList data={data} />
+        <ListingSection title="Rentals Near You" data={data}/>
       </Box>
       <Box>
           <Center>
-            <Text className="screen_text">All in one platform</Text>
-            <Text>Eu, molestie commodo, enim pellentesque turpis integer sagittis</Text>
+            <Text className="screen_text" id="category_header">All in one platform</Text>
+          </Center>
+          <Center>
+          <Text className='screen_text' id='icon_div_description'>Eu, molestie commodo, enim pellentesque turpis integer sagittis</Text>
+          </Center>
+          <Center>
+              <IconList/>
           </Center>
       </Box>
     </Box>
   );
+
+  
+}
+
+function ListingSection(props) {
+    const data =  props.data;
+    const title =  props.title;
+    return(
+        <Box>
+        <Text className="screen_text" id="category_header">{title}</Text>
+        <RentalList data={data} />
+      </Box>
+    );
 }
 
 export default HomeScreen;

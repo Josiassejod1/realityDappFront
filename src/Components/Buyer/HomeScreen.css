@@ -1,0 +1,66 @@
+.screen_text {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-weight: 700;
+}
+
+.container {
+  position: relative;
+  background-color: #040404;
+  padding: 80px;
+  
+}
+
+#abstract_figure_1 {
+  position: absolute;
+  width: 123px;
+  height: 123px;
+  left: 50%;
+  top: 12%;
+
+  background: #fb37ff;
+  filter: blur(100px);
+}
+
+#abstract_figure_2 {
+  position: absolute;
+  width: 123px;
+  height: 123px;
+  left: 75%;
+  top: 50%;
+
+  background: #18b2de;
+  filter: blur(100px);
+}
+
+#abstract_figure_3 {
+  position: absolute;
+  width: 1292px;
+  height: 53px;
+  left: 24%;
+  top: 60%;
+
+  /* Linear Purple Blue Style */
+
+  background: linear-gradient(93.51deg, #9b51e0 2.84%, #3081ed 99.18%);
+  filter: blur(100px);
+  border-radius: 10px;
+}
+
+#slogan {
+  font-size: 80px;
+}
+
+#slogan_div {
+  width: 100%;
+}
+
+#description {
+  font-family: 24px;
+  font-weight: 400;
+}
+
+#category_header {
+    font-weight: 500;
+    font-size: 48px;
+}

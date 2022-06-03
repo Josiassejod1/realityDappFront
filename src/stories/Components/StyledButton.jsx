@@ -19,7 +19,7 @@ export const StyledButton = ({ primary, label, ...props }) => {
   export function ViewAllButton() {
     return (
       <Text className="screen_text">
-        View All <ArrowForwardIcon w={24} h={18} color="white" />
+        View all <ArrowForwardIcon w={24} h={18} color="white" />
       </Text>
     );
   }

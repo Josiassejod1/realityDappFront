@@ -21,6 +21,7 @@ const markers = coordinates.map((point) => {
         <Marker 
         width={18}
         anchor={point} 
+        style={{ borderRadius: '50%', backgroundColor: '#53329A' }}
         color='#53329A' 
       />
     )

@@ -4,7 +4,7 @@ import './HomeScreen.css';
 import { RentalList } from '../../stories/Components/RentalList';
 import { IconList } from '../../stories/Components/IconList';
 import { StyledButton } from '../../stories/Components/StyledButton';
-//import { ArrowForwardIcon } from '@chakra-ui/icons';
+import {ViewAllButton} from '../../stories/Components/StyledButton';
 
 function HomeScreen() {
   const data = [
@@ -145,18 +145,17 @@ function ListingSection(props) {
   const title = props.title;
   return (
     <Box>
-      <Flex justifyContent="space-between">
+      <Flex justifyContent="space-between" justifyItems="center">
         <Text className="screen_text" id="category_header">
           {title}
         </Text>
+        <Center>
+          <ViewAllButton />
+        </Center>
       </Flex>
       <RentalList data={data} />
     </Box>
   );
 }
-// TODO: Add View All Button with Arrow
-// function ViewAllButton() {
-//   <ArrowForwardIcon w={24} h={18} />;
-// }
 
 export default HomeScreen;

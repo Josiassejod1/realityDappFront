@@ -1,5 +1,8 @@
 import React from "react";
 import "./StyledButton.css";
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { Text } from "@chakra-ui/react";
+
 
 export const StyledButton = ({ primary, label, ...props }) => {
     return (
@@ -12,3 +15,12 @@ export const StyledButton = ({ primary, label, ...props }) => {
       </button>
     );
   };
+
+  export function ViewAllButton() {
+    return (
+      <Text className="screen_text">
+        View all <ArrowForwardIcon w={24} h={18} color="white" />
+      </Text>
+    );
+  }
+  
